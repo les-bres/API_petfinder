@@ -1,0 +1,86 @@
+<!doctype html>
+<head>
+<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/grids-responsive-min.css">
+</head>
+
+<div class="pure-menu pure-menu-open pure-menu-horizontal">
+    <a href="/" class="pure-menu-heading">PET FINDER</a>
+
+    <ul>
+        <li class="pure-menu-selected"><a href="/">Home</a></li>
+        <li><a href="/about">About</a></li>
+
+	
+    </ul>
+</div>
+<hr>
+<br>
+<div class="pure-g">
+    <div class="pure-u-1-5"></div>
+    <div class="pure-u-3-5">
+   
+<form class="pure-form"  method="POST" align="center">
+  <fieldset>
+    <legend> Search for a Pet </legend>
+        <input type="text" class="pure-input-1-2" placeholder="Zip Code" name="zip">
+       <br><br>
+	<label for="type">Type of Animal</label>
+	<select id="type" name="type">
+	  <option value="dog">Dog</option>
+	  <option value="cat">Cat</option>
+	  <option value="barnyard">Barnyard</option>
+	  <option value="bird">Bird</option>
+	  <option value="Horse">Horse</option>
+	  <option value="Pig">Pig</option>
+	  <option value="Reptie">Reptile</option>
+	  <option value="small_furry">Small Furry</option>
+	</select>
+<br>
+	<input type="text" class="pure-input-1-2" placeholder="Breed" name="breed">
+	<legend> Size of Animal </legend>
+	<label for="size1" class="pure-checkbox">
+	  <input id="size1" type="checkbox" name="size1" value="small">Small
+	</label>
+	<label for="size2" class="pure-checkbox">
+	<input id="size2" type="checkbox" name="size2" value="medium">Medium
+	</label>
+	<label for="size3" class="pure-checkbox">
+	  <input id="size3" type="checkbox" name="size3" value="large">Large
+	  </label>
+	<label for="size4" class="pure-checkbox">
+	  <input id="size4" type="checkbox" name="size4" value="extra_large">Extra Large
+	  </label>
+<br>
+
+<legend> Age of Animal </legend>
+	<label for="age1" class="pure-checkbox">
+	  <input id="age1" type="checkbox" name="age1" value="baby">Baby</label>
+	<label for="age2" class="pure-checkbox">
+	  <input id="age2" type="checkbox" name="age2" value="young">Young</label>
+	<label for="age3" class="pure-checkbox">
+	  <input id="age3" type="checkbox" name="age3" value="adult">Adult</label>
+	<label for="age4" class="pure-checkbox">
+	  <input id="age4" type="checkbox" name="age4" value="senior">Senior</label>
+	 
+<legend> Sex of Animal </legend>
+<label for="sex1" class="pure-checkbox">
+<input id="sex1" type = "checkbox" name="sex1" value="female">Female</label>
+<label for="sex2" class="pure-checkbox">
+<input id="sex2" type="checkbox" name="sex2" value="male">Male</label>
+
+
+       <br><br>
+
+        <input type="text" class="pure-input-1-2" placeholder="Another Group?">
+        <input type="text" class="pure-input-1-2" placeholder="More Stuff?">
+
+
+    <button type="submit" class="pure-button pure-input-1-2 pure-button-primary">Search</button>
+</fieldset>
+</form>
+</div>
+
+
+<div class="pure-u-1-5"></div>
+</div>
