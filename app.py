@@ -16,6 +16,45 @@ def home():
     else:
         url = "http://api.petfinder.com/pet.find?format=json&key=" + key
         url += "&location=" + request.form["zip"]
+
+        type = request.form["type"]
+        if (type != ""):
+            url += "&animal=" + type
+
+        ages = []
+        
+        try:
+            ages.append( request.form["age1"])
+        except:
+            pass
+        try:
+            ages.append( request.form["age2"])
+        except:
+            pass
+        try:
+            ages.append( request.form["age3"])
+        except:
+            pass
+        try:
+            ages.append( request.form["age4"])
+        except:
+            pass
+
+        for age in ages:
+            if age != "":
+                url += "&age=" + age
+        
+        
+        sizes = []
+        sizes.append( request.form["size1"])
+        sizes.append( request.form["size2"])
+        sizes.append( request.form["size3"])
+        sizes.append( request.form["size4"])
+
+        for size in sizes:
+            if size != "":
+                url += "&size=" + size
+                
         print url
         req = urllib2.urlopen(url)
         d = json.loads( req.read() )
