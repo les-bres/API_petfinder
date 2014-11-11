@@ -19,30 +19,6 @@
 <div class="pure-g">
     <div class="pure-u-1-5"></div>
     <div class="pure-u-3-5">
-
-      <div class="pure-menu pure-menu-open pure-menu-vertical">
-    <ul>
-        {% for pet in pets %}
-        <li><a href="/pets/{{pet['name']['$t']}}"><b>{{pet["name"]["$t"] }}</b> -
-	 <small>
-      {%set boo = True %}
-      {% for b in pet["breeds"]["breed"] %}
-      {%if boo == False %}, {%endif%}
-    {{ b["$t"] }}
-     
-    {%set boo = False %}
-    {%endfor%}
-    
-      {% if boo %}
-      {{pet["breeds"]["breed"]["$t"]}}
-      {%endif%}
- </small>
-	</a></li>
-{%endfor%}
-
-
-    </ul>
-</div>
-</div>
-
-<div class="pure-u-1-5"></div>
+      Welcome to Leslie & Kyler's project
+<div>
+ <div class="pure-u-1-5"></div>

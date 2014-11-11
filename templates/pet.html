@@ -1,0 +1,102 @@
+<!doctype html>
+<head>
+<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/grids-responsive-min.css">
+<style>
+div.img {
+max-width:100px;
+}
+
+img {
+max-width:400px;
+align-content:center;
+}
+
+font {
+justify-content: space-around;
+}
+
+div.img a:hover img {
+    border:1px solid #0000ff;
+}
+
+.justify {
+justify-content: space-around;
+}
+
+</style>
+</head>
+
+<div class="pure-menu pure-menu-open pure-menu-horizontal">
+    <a href="/" class="pure-menu-heading">PET FINDER</a>
+
+    <ul>
+        <li class="pure-menu-selected"><a href="/">Home</a></li>
+        <li><a href="/about">About</a></li>
+
+	
+    </ul>
+</div>
+
+
+<hr>
+<br>
+<div class="pure-g">
+    <div class="pure-u-2-5">
+          {%if is_image %}
+      <div class="img" align = "center">
+	<a target="_blank" href="{{pet['media']['photos']['photo'][2]['$t']}}">
+    <img src="{{pet['media']['photos']['photo'][2]['$t']}}" alt="pet" >
+  </a>
+  </div>
+      {%endif%}
+    
+</div>
+   
+    <div class="pure-u-2-5"> <div style="width:93%;border:2px groove #C0C0C0;padding:2px;">
+	<font face="FreeSans">
+      <h1 align="left"> {{pet['name']['$t']}} </h1>
+  
+      {%set boo = True %}
+    
+      Breed: 
+    {% for b in pet["breeds"]["breed"] %}
+      {%if boo ==False%}, {%endif%}
+    {{ b["$t"] }}
+    {%set boo = False %}
+    {%endfor%}
+    
+      {% if boo %}
+      {{pet["breeds"]["breed"]["$t"]}}
+      {%endif%}
+ 
+  <br><br>
+  
+  Sex: {{pet["sex"]["$t"]}}<br>
+  Age: {{pet["age"]["$t"]}}<br>
+  Size: {{pet["size"]["$t"]}}
+
+  <br><br>
+<b> <font size="4" align="center"> Description: </font> </b><br>
+<font class="justify" size="2">{{pet["description"]["$t"]}}</font>
+
+  </div>
+  <div style="width:93%;border:2px groove #D8D8D8 ;padding:2px;">
+    <b> <font size="4" align="center"> Contact Info: </font> </b><br>
+
+
+    {%for item in contact %}
+    {{item}}: <small>{{contact[item]['$t']}}</small><br>
+    {%endfor%}
+</div>
+
+  </div></font>
+   <div class="pure-u-1-5">
+   <div class="pure-menu pure-menu-open pure-menu-vertical">
+   <ul>
+     <li><a href="/breed">More Breed Info</a></li>
+     <li><a href="/directions">Directions to Where I Live!</a></li>
+     </ul>
+   </div>
+
+   </div>
