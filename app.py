@@ -1,4 +1,4 @@
-from flask import Flask, request, redirect, render_template, session, escape
+from flask import Flask, request, redirect, render_template, session, escape, url_for
 import json, urllib2
 
 
@@ -132,36 +132,53 @@ def directions():
     
     global address
     if request.method=="GET":
-        return render_template("directions.html")
+        return render_template("directions.html", error = False)
     else:
         address = request.form['address']
         b = request.form['b']
         if b == "submit":
             return redirect(url_for("results"))
+        
 
-@app.route("/results", methods=["GET", "POST"])
+@app.route("/results", methods = ["GET", "POST"])
 def results():
 
-    return render_template("results.html")
-    '''
-    urld = "http://maps.googleapis.com/maps/api/directions/json?key=" + key2
+    
+    urld = "https://maps.googleapis.com/maps/api/directions/json?key=" + key2
 
-    urld += "&origin=" + address
+ 
 
-    dest = contact2['address']['$t']+','+contact2['city']['$t']+','+contact2['state']['$t']+','+contact2['zip']['$t']
-    print dest
+    a = ""
+
+    for i in address:
+        if i == " ":
+            a += "+"
+        else:
+            a += i
+
+    urld += "&origin=" + a
+
+    dest1 = contact2['address1']['$t']+','+contact2['city']['$t']+','+ contact2['state']['$t']+','+contact2['zip']['$t']
+    dest = ""
+    for i in dest1:
+        if i == " ":
+            dest += "+"
+        else:
+            dest += i
 
     urld += "&destination=" + dest
-    '''
 
+    print urld
 
+    
+    req = urllib2.urlopen(urld)
+    d = json.loads(req.read())
+    print d
 
-
- #   req = urllib2.urlopen(urld)
-#    d = json.loads(req.read())
-
-    return "hello world"
-
+    try:
+        return render_template("results.html", direct=d['routes'][0]['legs'][0]['steps'])
+    except:
+        return redirect(url_for("directions", error=True))
     
 
 
