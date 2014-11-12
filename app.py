@@ -129,17 +129,7 @@ def pet(pet=None):
 
 @app.route("/directions", methods = ["GET", "POST"])
 def directions():
-    '''
-    urld = "http://maps.googleapis.com/maps/api/directions/json?key=" + key2
- #   urld += "&origin=manhattan&destination=brooklyn"
-    req = urllib2.urlopen(urld)
-    d = json.loads(req.read())
-
-    print contact2
-
-    return "hello world"
-        
-    '''
+    
     global address
     if request.method=="GET":
         return render_template("directions.html")
@@ -147,8 +137,32 @@ def directions():
         address = request.form['address']
         b = request.form['b']
         if b == "submit":
-            return render_template("results.html")
+            return redirect(url_for("results"))
 
+@app.route("/results", methods=["GET", "POST"])
+def results():
+
+    return render_template("results.html")
+    '''
+    urld = "http://maps.googleapis.com/maps/api/directions/json?key=" + key2
+
+    urld += "&origin=" + address
+
+    dest = contact2['address']['$t']+','+contact2['city']['$t']+','+contact2['state']['$t']+','+contact2['zip']['$t']
+    print dest
+
+    urld += "&destination=" + dest
+    '''
+
+
+
+
+ #   req = urllib2.urlopen(urld)
+#    d = json.loads(req.read())
+
+    return "hello world"
+
+    
 
 
 
