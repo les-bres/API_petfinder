@@ -18,6 +18,7 @@ def home():
     else:
         session.pop('url', None)
         url = "http://api.petfinder.com/pet.find?format=json&key=" + key
+        print url
         url += "&location=" + request.form["zip"]
 
         type = request.form["type"]
@@ -74,8 +75,11 @@ def home():
         req = urllib2.urlopen(url)
         d = json.loads( req.read() )
 
-        # pets in list form
-        pets = d["petfinder"]["pets"]["pet"]
+        try:
+            # pets in list form
+            pets = d["petfinder"]["pets"]["pet"]
+        except:
+            return render_template("oops.html")
             
 
         session['url'] = url
