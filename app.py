@@ -4,12 +4,16 @@ import json, urllib2
 
 key = "0d7091936983bcf3195dc08f3ed4f7d4"
 
+key2 = "AIzaSyDL5TSpzLPA-Zozqt_ObWEvNuooIy7eHtg"
+
 #API Secret...shouldn't need this
 #secret = "320445cae703c6d50a5aca4988cd3bc7"
 
 app = Flask(__name__)
 #d = None
 app.secret_key = "hola"
+
+#global contact2
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
@@ -113,6 +117,7 @@ def pet(pet=None):
         is_image = False
 
     contact = pet_["contact"]
+    global contact2
     contact2 = {}
 
     for item in contact:
@@ -121,6 +126,36 @@ def pet(pet=None):
 
 
     return render_template("pet.html", pet=pet_, is_image = is_image, contact=contact2)
+
+@app.route("/directions", methods = ["GET", "POST"])
+def directions():
+    '''
+    urld = "http://maps.googleapis.com/maps/api/directions/json?key=" + key2
+ #   urld += "&origin=manhattan&destination=brooklyn"
+    req = urllib2.urlopen(urld)
+    d = json.loads(req.read())
+
+    print contact2
+
+    return "hello world"
+        
+    '''
+    global address
+    if request.method=="GET":
+        return render_template("directions.html")
+    else:
+        address = request.form['address']
+        b = request.form['b']
+        if b == "submit":
+            return render_template("results.html")
+
+
+
+
+
+    
+
+
 
 if __name__=="__main__":
     app.debug = True
