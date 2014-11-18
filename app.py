@@ -29,6 +29,12 @@ def home():
         if (type != ""):
             url += "&animal=" + type
 
+        breed = request.form["breed"]
+        if (breed != ""):
+            url += "&primary_breed=" + breed.replace(" ", "+")
+
+        print url
+
         ages = []
         
         try:
