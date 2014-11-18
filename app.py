@@ -29,9 +29,7 @@ def home():
         if (type != ""):
             url += "&animal=" + type
 
-        breed = request.form["breed"]
-        if (breed != ""):
-            url += "&primary_breed=" + breed.replace(" ", "+")
+    
 
         print url
 
@@ -163,8 +161,10 @@ def results():
             a += i
 
     urld += "&origin=" + a
-
-    dest1 = contact2['address1']['$t']+','+contact2['city']['$t']+','+ contact2['state']['$t']+','+contact2['zip']['$t']
+    try:
+        dest1 = contact2['address1']['$t']+','+contact2['city']['$t']+','+ contact2['state']['$t']+','+contact2['zip']['$t']
+    except:
+        dest1 = contact2['zip']['$t']
     dest = ""
     for i in dest1:
         if i == " ":
